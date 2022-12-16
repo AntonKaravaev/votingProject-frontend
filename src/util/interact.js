@@ -1,6 +1,6 @@
 import contractABI from '../../contract-abi.json'
 import { ethers } from 'ethers'
-import { TStatus } from '../core/TStatus'
+import { TMetamaskStatus } from '../core/TMetamaskStatus'
 
 const alchemyKey =
   'wss://eth-goerli.g.alchemy.com/v2/nGHBOv3KDhM8u3UEHExjWVypwaJ3E_xZ'
@@ -17,8 +17,6 @@ export const votingContract = new web3.eth.Contract(
   contractAddress,
 )
 
-export const loadCurrentMessage = async () => {}
-
 export const connectWallet = async () => {
   if (window.ethereum) {
     try {
@@ -26,24 +24,22 @@ export const connectWallet = async () => {
         method: 'eth_requestAccounts',
       })
       return {
-        status: TStatus.CONNECTED,
+        status: TMetamaskStatus.CONNECTED,
         address: addressArray[0],
       }
     } catch (err) {
       return {
         address: '',
-        status: TStatus.ERROR,
+        status: TMetamaskStatus.ERROR,
       }
     }
   } else {
     return {
       address: '',
-      status: TStatus.ERROR_METAMASK,
+      status: TMetamaskStatus.ERROR_METAMASK,
     }
   }
 }
-
-export const getCurrentWalletConnected = async () => {}
 
 export const createVoting = async (votingName) => {
   if (!votingName?.length) {

@@ -4,3 +4,6 @@ dist
 .idea
 .env
 
+.DS_Store
+copy.sh
+src/.DS_Store

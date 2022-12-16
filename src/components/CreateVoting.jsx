@@ -1,26 +1,36 @@
 import React, { useState } from 'react'
 import { createVoting } from '../util/interact'
-import { Button, CircularProgress, InputLabel, TextField } from '@mui/material'
-import { Alert } from '@mui/lab'
+import {
+  AlertTitle,
+  Button,
+  CircularProgress,
+  InputLabel,
+  TextField,
+} from '@mui/material'
+import { Alert } from '@mui/material'
+import { getVotingId } from '../util/getVotingId'
+import { TStatus } from '../core/TStatus'
 
 export const CreateVoting = () => {
   const [votingName, setVotingName] = useState('')
-  const [status, setStatus] = useState(null)
-  const [pending, setPending] = useState(false)
+  const [voting, setVoting] = useState(null)
+  const [status, setStatus] = useState('')
 
   const handleInputChange = (e) => {
     setVotingName(e.target.value)
   }
 
   const handleCreateVotingClick = async () => {
-    setPending(true)
+    setStatus(TStatus.PENDING)
     try {
-      const result = await createVoting(votingName)
-      setStatus(result?.value['_hex'])
+      const newVoting = await createVoting(votingName)
+      setVoting(newVoting)
+      getVotingId(newVoting)
+      setStatus(TStatus.SUCCESS)
     } catch (e) {
-      setStatus(e.message)
+      console.error(e)
+      setStatus(TStatus.ERROR)
     } finally {
-      setPending(false)
       setVotingName('')
     }
   }
@@ -41,7 +51,7 @@ export const CreateVoting = () => {
         <div className="block">
           <Button
             variant={'outlined'}
-            disabled={pending}
+            disabled={status === TStatus.PENDING}
             onClick={handleCreateVotingClick}
           >
             Create a voting
@@ -49,13 +59,20 @@ export const CreateVoting = () => {
         </div>
       )}
 
-      {status && !pending && (
+      {status === TStatus.SUCCESS && (
         <Alert severity="success">
-          Voting with id {status} successfully created!
+          Voting with id {getVotingId(voting)} successfully created!
         </Alert>
       )}
 
-      {pending && <CircularProgress />}
+      {status === TStatus.PENDING && <CircularProgress />}
+
+      {status === TStatus.ERROR && (
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          Cannot get voting id. Check console for errors
+        </Alert>
+      )}
     </>
   )
 }
