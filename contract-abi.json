@@ -1,0 +1,364 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "creator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "votingName",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "id",
+        "type": "uint256"
+      }
+    ],
+    "name": "AddAnVotingEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "votingId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "nameCandidate",
+        "type": "string"
+      }
+    ],
+    "name": "AddCandidateEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "ownerAddress",
+        "type": "address"
+      }
+    ],
+    "name": "DeployedOwnerEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "voteCounter",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "position",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct Voting.Candidate[]",
+        "name": "candidates",
+        "type": "tuple[]"
+      }
+    ],
+    "name": "RecalculationPositionsEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "candidateId",
+        "type": "uint256"
+      }
+    ],
+    "name": "RemoveCandidateEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "votingId",
+        "type": "uint256"
+      }
+    ],
+    "name": "RemoveVotingEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "enum Voting.StagesOfVoting",
+        "name": "stagesOfVoting",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "startTime",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "finishTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "StartVotingEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "candidateId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "voterId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "candidateVoteCounter",
+        "type": "uint256"
+      }
+    ],
+    "name": "ToVoteEvent",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_votingId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "_nameCandidate",
+        "type": "string"
+      }
+    ],
+    "name": "addCandidate",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_nameVoting",
+        "type": "string"
+      },
+      {
+        "internalType": "enum Voting.TypeOfVoting",
+        "name": "_votingType",
+        "type": "uint8"
+      }
+    ],
+    "name": "createVoting",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_votingId",
+        "type": "uint256"
+      }
+    ],
+    "name": "finishVoting",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "voteCounter",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "position",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Voting.Candidate[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_votingId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_candidateId",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeCandidate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_votingId",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeVoting",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_votingId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "finishTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "startVoting",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_votingId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_candidateId",
+        "type": "uint256"
+      }
+    ],
+    "name": "toVote",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "voteCounter",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "position",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct Voting.Candidate[]",
+        "name": "",
+        "type": "tuple[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
