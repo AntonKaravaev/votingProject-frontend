@@ -2,11 +2,10 @@ import contractABI from '../../contract-abi.json'
 import { ethers } from 'ethers'
 import { TMetamaskStatus } from '../core/TMetamaskStatus'
 
-const alchemyKey =
-  'wss://eth-goerli.g.alchemy.com/v2/nGHBOv3KDhM8u3UEHExjWVypwaJ3E_xZ'
+const alchemyKey = 'wss://eth-goerli.g.alchemy.com/v2/nGHBOv3KDhM8u3UEHExjWVypwaJ3E_xZ'
 const { createAlchemyWeb3 } = require('@alch/alchemy-web3')
 const web3 = createAlchemyWeb3(alchemyKey)
-const contractAddress = '0x085418362824D1fc8d5ae884Ab167A1bE319B9a3'
+const contractAddress = '0x2CeCFC3FdC592647985a03133fF4205040Af2793'
 
 const API_KEY = process.env.API_KEY
 const PRIVATE_KEY = process.env.PRIVATE_KEY
